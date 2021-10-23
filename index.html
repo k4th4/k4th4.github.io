@@ -1,7 +1,114 @@
 <!DOCTYPE html>
 <html>
+<head>
+<style>
+/* FILTER INPUTS */
+
+.filterInputs {
+  padding-bottom: 5px;
+}
+
+.filterInputs input {
+  display: none;
+}
+
+.filterInputs label {
+  display: inline-block;
+  position: relative;
+  padding: 10px 20px;
+  cursor: pointer;
+  user-select: none; /* prevent highlight */
+}
+
+.filterInputs i {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: inset 0 0 0 2px #D3D3D3;
+  z-index: -1;
+}
+
+.filterInputs input:checked + i {
+  background: #D3D3D3;
+}
+
+
+/* HELPER CLASSES */
+
+.is-hidden {
+  display: none;
+}
+</style>
+</head>
 <body>
 <h1>Hello World</h1>
 <p>I'm hosted with GitHub Pages.</p>
+<div class="filterInputs">
+  <label><input type="radio" name="year" value="" checked><i></i>All years</label>
+  <label><input type="radio" name="year" value="2019"><i></i>2019</label>
+  <label><input type="radio" name="year" value="2020"><i></i>2020</label>
+  <label><input type="radio" name="year" value="2021"><i></i>2021</label>
+</div>
+
+<div class="filterInputs">
+  <label><input type="radio" name="type" value="" checked><i></i>All years</label>
+  <label><input type="radio" name="type" value="meeting"><i></i>Meeting Note</label>
+  <label><input type="radio" name="type" value="speech"><i></i>Speech</label>
+  <label><input type="radio" name="type" value="policy"><i></i>Policy</label>
+</div>
+
+<div class="filterInputs">
+  <label><input type="radio" name="event" value=""><i></i>All types</label>
+  <label><input type="radio" name="event" value="npc"><i></i>NPC</label>
+  <label><input type="radio" name="event" value="nationalcongress" checked><i></i>National Congress</label>
+  <label><input type="radio" name="event" value="plenum"><i></i>Plenum</label>
+</div>
+
+<div data-filterable="2020 meeting nationalcongress">Meeting National Congress 2020</div>
+<div data-filterable="2021 meeting nationalcongress">Meeting National Congress 2021</div>
+<div data-filterable="2019 meeting nationalcongress">Meeting National Congress 2029</div>
+<div data-filterable="2020 speech nationalcongress">Speech National Congress 2020</div>
+<div data-filterable="2019 speech nationalcongress">Speech National Congress 2019</div>
+<div data-filterable="2021 speech nationalcongress">Speech National Congress 2020</div>
+<div data-filterable="2021 speech plenum">Speech Plenum 2021</div>
+<div data-filterable="2020 speech plenum">Speech Plenum 2020</div>
+<div data-filterable="2019 speech plenum">Speech Plenum 2019</div>
+<div data-filterable="2021 policy plenum">Policy Plenum 2021</div>
+<div data-filterable="2020 policy plenum">Policy Plenum 2020</div>
+<div data-filterable="2019 policy plenum">Policy Plenum 2019</div>
+
+<script>
+const el_filters = document.querySelectorAll('[name="year"], [name="type"], [name="event"]'),
+  el_filterable = document.querySelectorAll('[data-filterable]');
+
+const applyFilter = () => {
+
+  // Filter checked inputs
+  const el_checked = [...el_filters].filter(el => el.checked && el.value);
+
+  // Collect checked inputs values to array
+  const filters = [...el_checked].map(el => el.value);
+
+  // Get elements to filter
+  const el_filtered = [...el_filterable].filter(el => {
+    const props = el.getAttribute('data-filterable').trim().split(/\s+/);
+    return filters.every(fi => props.includes(fi))
+  });
+
+  // Hide all
+  el_filterable.forEach(el => el.classList.add('is-hidden'));
+
+  // Show filtered
+  el_filtered.forEach(el => el.classList.remove('is-hidden'));
+}
+
+// Assign event listener
+el_filters.forEach(el => el.addEventListener('change', applyFilter));
+// Init
+applyFilter();
+</script>
+
 </body>
 </html>
