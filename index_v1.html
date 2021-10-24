@@ -1,46 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-/* FILTER INPUTS */
-
-.filterInputs {
-  padding-bottom: 5px;
-}
-
-.filterInputs input {
-  display: none;
-}
-
-.filterInputs label {
-  display: inline-block;
-  position: relative;
-  padding: 10px 20px;
-  cursor: pointer;
-  user-select: none; /* prevent highlight */
-}
-
-.filterInputs i {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  box-shadow: inset 0 0 0 2px #D3D3D3;
-  z-index: -1;
-}
-
-.filterInputs input:checked + i {
-  background: #D3D3D3;
-}
-
-
-/* HELPER CLASSES */
-
-.is-hidden {
-  display: none;
-}
-</style>
+<link rel=¨stylesheet¨ type=¨text/css¨ href=¨style.css¨>
 </head>
 <body>
 <h1>Hello World</h1>
@@ -79,36 +40,7 @@
 <div data-filterable="2020 policy plenum">Policy Plenum 2020</div>
 <div data-filterable="2019 policy plenum">Policy Plenum 2019</div>
 
-<script>
-const el_filters = document.querySelectorAll('[name="year"], [name="type"], [name="event"]'),
-  el_filterable = document.querySelectorAll('[data-filterable]');
-
-const applyFilter = () => {
-
-  // Filter checked inputs
-  const el_checked = [...el_filters].filter(el => el.checked && el.value);
-
-  // Collect checked inputs values to array
-  const filters = [...el_checked].map(el => el.value);
-
-  // Get elements to filter
-  const el_filtered = [...el_filterable].filter(el => {
-    const props = el.getAttribute('data-filterable').trim().split(/\s+/);
-    return filters.every(fi => props.includes(fi))
-  });
-
-  // Hide all
-  el_filterable.forEach(el => el.classList.add('is-hidden'));
-
-  // Show filtered
-  el_filtered.forEach(el => el.classList.remove('is-hidden'));
-}
-
-// Assign event listener
-el_filters.forEach(el => el.addEventListener('change', applyFilter));
-// Init
-applyFilter();
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>

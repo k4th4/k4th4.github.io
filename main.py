@@ -1,16 +1,40 @@
-# This is a sample Python script.
-
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+import waybackpy
+import pandas
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+
+def export_html_full(html):
+    """exports the email text as a txt file,
+    erases the previous version in the txt before exporting,
+    for testing"""
+
+    html_head = '<!DOCTYPE html> <html> <head>'
+    style = '<link rel=¨stylesheet¨ type=¨text/css¨ href=¨style.css¨>'
+    end_of_head = '</head><body>'
+    script = '<script src="script.js"></script>'
+    html_tail = '</body></html>'
+    full_text_html = html_head + style + end_of_head + html + script + html_tail
+    with open(f'index2.html',
+              mode='w') as html_file:
+        html_file.write(full_text_html)
+
+def archive_urls(url_list):
+    user_agent = "Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Mobile Safari/537.36"  # determined the user-agent.
+    archived_urls =[]
+    for url in url_list:
+        # url =  # determined the URL to be saved.
+        wayback = waybackpy.Url(url, user_agent)  # created the waybackpy instance.
+        archive = wayback.save()  # saved the link to the internet archive
+        print(archive.archive_url)  # printed the URL.
+        archived_urls.append(archive.archive_url)
+
+    return archived_urls
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+if __name__ == "__main__":
+    html = "<h1>Hello World</h1> <p>I'm hosted with GitHub Pages.</p>"
+    export_html_full(html)
+
+
+
