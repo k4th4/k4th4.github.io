@@ -11,9 +11,10 @@ def export_html_full(html):
     html_head = '<!DOCTYPE html> \n <html> \n <head> \n'
     style = '<link rel=¨stylesheet¨ type=¨text/css¨ href=¨style.css¨>\n'
     end_of_head = '</head>\n<body>\n'
-    script = '<script src="script.js">\n</script>\n'
+    script = '\n <script src="script.js"> \n </script> \n'
     html_tail = '</body>\n</html>'
     full_text_html = html_head + style + end_of_head + html + script + html_tail
+    print(full_text_html)
     with open(f'index2.html',
               mode='w') as html_file:
         html_file.write(full_text_html)
