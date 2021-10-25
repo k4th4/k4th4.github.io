@@ -77,8 +77,8 @@ def generate_html(df):
             not_years.append(k)
     print('keywords:'+ str(not_years))
 
-    institutions = ['Politburo']
-    document_types = ['GroupStudySessions']
+    institutions = ['Politburo','OrganizationDepartment']
+    document_types = ['GroupStudySessions', 'Documents' ]
 
     if len(not_years) != len(institutions+document_types):
         print('please check keywords!')
