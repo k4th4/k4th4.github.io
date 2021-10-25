@@ -85,7 +85,7 @@ def generate_html(df):
 
     html_string ='<div class="filterInputs"> <label><input type="radio" name="year" value="" checked><i></i>All years</label> '
     for year in years:
-        html_string += f'<label><input type="radio" name="year" value={year}><i></i>{year}</label></div>'
+        html_string += f'<label><input type="radio" name="year" value={year}><i></i>{year}</label>'
     html_string += '</div><div class="filterInputs"> <label><input type="radio" name="institution" value="" checked><i></i>All institutions</label>'
     for institution in institutions:
         html_string += f'<label><input type="radio" name="institution" value={institution}><i></i>{institution}</label></div>'
