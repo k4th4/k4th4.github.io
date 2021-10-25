@@ -83,19 +83,21 @@ def generate_html(df):
     if len(not_years) != len(institutions+document_types):
         print('please check keywords!')
 
-    html_string ='<div class="filterInputs"> <label><input type="radio" name="year" value="" checked><i></i>All years</label> '
+    html_string ='\n <div class="filterInputs"> <label><input type="radio" name="year" value="" checked><i></i>All years</label> \n '
     for year in years:
-        html_string += f'<label><input type="radio" name="year" value={year}><i></i>{year}</label>'
-    html_string += '</div><div class="filterInputs"> <label><input type="radio" name="institution" value="" checked><i></i>All institutions</label>'
+        html_string += f'<label><input type="radio" name="year" value={year}><i></i>{year}</label>\n'
+
+    html_string += '\n</div><div class="filterInputs"> <label><input type="radio" name="institution" value="" checked><i></i>All institutions</label>\n'
     for institution in institutions:
-        html_string += f'<label><input type="radio" name="institution" value={institution}><i></i>{institution}</label>'
-    html_string += '</div><div class="filterInputs"> <label><input type="radio" name="document_type" value="" checked><i></i>All document types</label>'
+        html_string += f'<label><input type="radio" name="institution" value={institution.strip()}><i></i>{institution.strip()}</label>\n'
+
+    html_string += '\n</div><div class="filterInputs"> <label><input type="radio" name="document_type" value="" checked><i></i>All document types</label>\n'
     for document_type in document_types:
-        html_string += f'<label><input type="radio" name="document_type" value={document_type}><i></i>{document_type}</label>'
-    html_string += '</div>'
+        html_string += f'<label><input type="radio" name="document_type" value={document_type.strip()}><i></i>{document_type.strip()}</label>\n'
+    html_string += '</div>\n'
 
     for index, row in df.iterrows():
-        html_string += f'<div data-filterable={row["Keywords"].replace(",", " ")}>{row["Date"]},{row["Title"]}, {row["Link"]}</div>'
+        html_string += f'<div data-filterable="{row["Keywords"].replace(",", " ")}">{row["Date"]},{row["Title"]}, {row["Link"]}</div>\n'
 
     return html_string
 
