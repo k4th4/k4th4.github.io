@@ -95,7 +95,7 @@ def generate_html(df):
     html_string += '</div>'
 
     for index, row in df.iterrows():
-        html_string += f'<div data-filterable={row["Keywords"]}>{row["Date"]},{row["Title"]}, {row["Link"]}</div>'
+        html_string += f'<div data-filterable={row["Keywords"].replace(",", " ")}>{row["Date"]},{row["Title"]}, {row["Link"]}</div>'
 
     return html_string
 
