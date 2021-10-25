@@ -25,4 +25,4 @@ const applyFilter = () => {
 // Assign event listener
 el_filters.forEach(el => el.addEventListener('change', applyFilter));
 // Init
-applyFilter();
+applyFilter()-;

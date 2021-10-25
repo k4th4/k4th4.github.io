@@ -27,7 +27,7 @@ def export_html_full(html):
     html_head = '<!DOCTYPE html>\n<html>\n<head>\n'
     style = '<link rel=¨stylesheet¨ type=¨text/css¨ href=¨style.css¨>\n'
     end_of_head = '</head>\n<body>\n'
-    script = '\n<script src="script.js">\n</script>\n'
+    script = '\n <script type="text/javascript" src="script.js"></script>\n'
     html_tail = '</body>\n</html>'
     full_text_html = html_head + style + end_of_head + html + script + html_tail
     print(full_text_html)
