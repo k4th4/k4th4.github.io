@@ -88,10 +88,10 @@ def generate_html(df):
         html_string += f'<label><input type="radio" name="year" value={year}><i></i>{year}</label>'
     html_string += '</div><div class="filterInputs"> <label><input type="radio" name="institution" value="" checked><i></i>All institutions</label>'
     for institution in institutions:
-        html_string += f'<label><input type="radio" name="institution" value={institution}><i></i>{institution}</label></div>'
+        html_string += f'<label><input type="radio" name="institution" value={institution}><i></i>{institution}</label>'
     html_string += '</div><div class="filterInputs"> <label><input type="radio" name="document_type" value="" checked><i></i>All document types</label>'
     for document_type in document_types:
-        html_string += f'<label><input type="radio" name="document_type" value={document_type}><i></i>{document_type}</label></div>'
+        html_string += f'<label><input type="radio" name="document_type" value={document_type}><i></i>{document_type}</label>'
     html_string += '</div>'
 
     for index, row in df.iterrows():
