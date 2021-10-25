@@ -1,4 +1,4 @@
-const el_filters = document.querySelectorAll('[name="year"], [name="type"], [name="event"]'),
+const el_filters = document.querySelectorAll('[name="year"], [name="document_type"], [name="institution"]'),
   el_filterable = document.querySelectorAll('[data-filterable]');
 
 const applyFilter = () => {
