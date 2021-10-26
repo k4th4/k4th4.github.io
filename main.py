@@ -30,7 +30,6 @@ def export_html_full(html):
     script = '\n <script src="script.js" type="text/javascript"></script>\n'
     html_tail = '</body>\n</html>'
     full_text_html = html_head + style + end_of_head + html + script + html_tail
-    print(full_text_html)
     with open(f'index.html',
               mode='w') as html_file:
         html_file.write(full_text_html)
@@ -98,19 +97,12 @@ def generate_html(df):
 
     for index, row in df.iterrows():
         if 'http' in row["Archive Link"]:
-
-            html_string += f'< div data - filterable = "{row["Keywords"].replace(", ", " ")}" >< tr > < td > {row["Date"]} < / td > < td > C {row["Title"]} < / td > < td > {row["Institution"]} < / td > < td > {row["Document Type"]} < / td > < td > {row["Link"]}, {row["Archive Link"]} < / td > < / tr > < tr > < td > < / td > < td colspan = "4" > {row["Title english (machine translated)"]} < / td >< / tr >< / div > '
-
+            html_string += f'<div data-filterable="{row["Keywords"].replace(", ", " ")}"><tr><td>{row["Date"]}</td><td>{row["Title"]}</td><td>{row["Institution"]}</td><td>{row["Document Type"]}</td><td><a href={row["Link"]}>Link1</a>, <a href={row["Archive Link"]}>Link1</a></td></tr><tr><td></td><td colspan="4" >{row["Title english (machine translated)"]}</td></tr></div>\n'
         else:
-            html_string += f'< div data - filterable = "{row["Keywords"].replace(", ", " ")}" >< tr > < td > {row["Date"]} < / td > < td > C {row["Title"]} < / td > < td > {row["Institution"]} < / td > < td > {row["Document Type"]} < / td > < td > {row["Link"]} < / td > < / tr > < tr > < td > < / td > < td colspan = "4" > {row["Title english (machine translated)"]} < / td >< / tr >< / div > '
+            html_string += f'<div data-filterable="{row["Keywords"].replace(", ", " ")}"><tr><td>{row["Date"]}</td><td>{row["Title"]}</td><td>{row["Institution"]}</td><td>{row["Document Type"]}</td><td><a href={row["Link"]}>Link1</a></td></tr><tr><td></td><td colspan="4" >{row["Title english (machine translated)"]}</td></tr></div>\n'
 
-        html_string +="</table>"
-        return html_string
-
-
-
-
-
+    html_string +="</table>"
+    return html_string
 
 
 if __name__ == "__main__":
