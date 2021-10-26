@@ -97,7 +97,11 @@ def generate_html(df):
     html_string += '</div>\n'
 
     for index, row in df.iterrows():
-        html_string += f'<div data-filterable="{row["Keywords"].replace(",", " ")}">{row["Date"]},{row["Title"]}, {row["Link"]}</div>\n'
+        if 'http' in row["Archive Link"]:
+            html_string += f'<div data-filterable="{row["Keywords"].replace(",", " ")}">{row["Date"]},{row["Title"]}<a href="{row["Link"]}">Link 1, </a><a href="{row["Archive Link"]}">Link2</a></div>\n'
+        else:
+            html_string += f'<div data-filterable="{row["Keywords"].replace(",", " ")}">{row["Date"]},{row["Title"]}<a href="{row["Link"]}">Link 1</a></div>\n'
+        
 
     return html_string
 
