@@ -99,10 +99,10 @@ def generate_html(df):
     for index, row in df.iterrows():
         if 'http' in row["Archive Link"]:
             html_string += f'<div data-filterable="{row["Keywords"].replace(",", " ")}">{row["Date"]}, {row["Title"]}, {row["Institution"]}, {row["Document Type"]}, <a href={row["Link"]}>Link 1</a>, <a href={row["Archive Link"]}>Link 2</a></div>\n' \
-                           f'<div data-filterable="{row["Keywords"].replace(",", " ")}">{row["Title english (machine translated)"]}<br></div>\n'
+                           f'<div data-filterable="{row["Keywords"].replace(",", " ")}">          {row["Title english (machine translated)"]}<br></div>\n'
         else:
             html_string += f'<div data-filterable="{row["Keywords"].replace(",", " ")}">{row["Date"]}, {row["Title"]}, {row["Institution"]}, {row["Document Type"]}, <a href={row["Link"]}>Link 1</a></div>\n ' \
-                           f'<div data-filterable="{row["Keywords"].replace(",", " ")}">{row["Title english (machine translated)"]}<br></div>\n'
+                           f'<div data-filterable="{row["Keywords"].replace(",", " ")}">          {row["Title english (machine translated)"]}<br></div>\n'
 
     return html_string
 
