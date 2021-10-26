@@ -93,15 +93,14 @@ def generate_html(df):
     html_string += '\n</div><div class="filterInputs"> <label><input type="radio" name="document_type" value="" checked><i></i>All document types</label>\n'
     for document_type in document_types:
         html_string += f'<label><input type="radio" name="document_type" value={document_type.strip()}><i></i>{document_type.strip()}</label>\n'
-    html_string += '</div><table>\n'
+    html_string += '</div>\n'
 
     for index, row in df.iterrows():
         if 'http' in row["Archive Link"]:
-            html_string += f'<tr><td><div data-filterable="{row["Keywords"].replace(", ", " ")}">{row["Date"]}</div></td><td><div data-filterable="{row["Keywords"].replace(", ", " ")}">{row["Title"]}</div></td><td><div data-filterable="{row["Keywords"].replace(", ", " ")}">{row["Institution"]}</div></td><td><div data-filterable="{row["Keywords"].replace(", ", " ")}">{row["Document Type"]}</div></td><td><div data-filterable="{row["Keywords"].replace(", ", " ")}"><a href={row["Link"]}>Link1</a>, <a href={row["Archive Link"]}>Link2</a></div></td></tr><tr><td><div data-filterable="{row["Keywords"].replace(", ", " ")}"></div></td><td colspan="4" ><div data-filterable="{row["Keywords"].replace(", ", " ")}">{row["Title english (machine translated)"]}</div></td></tr>\n'
+            html_string += f'<div data-filterable="{row["Keywords"].replace(", ", " ")}"><table><tr><td>{row["Date"]}</td><td>{row["Title"]}</td><td>{row["Institution"]}</td><td>{row["Document Type"]}</td><td><a href={row["Link"]}>Link 1</a>, <a href={row["Archive Link"]}>Link 2</a></td></tr><tr><td></td><td colspan="4" >{row["Title english (machine translated)"]}</td></tr></table></div>\n'
         else:
-            html_string += f'<tr><td><div data-filterable="{row["Keywords"].replace(", ", " ")}">{row["Date"]}</div></td><td><div data-filterable="{row["Keywords"].replace(", ", " ")}">{row["Title"]}</div></td><td><div data-filterable="{row["Keywords"].replace(", ", " ")}">{row["Institution"]}</div></td><td><div data-filterable="{row["Keywords"].replace(", ", " ")}">{row["Document Type"]}</div></td><td><div data-filterable="{row["Keywords"].replace(", ", " ")}"><a href={row["Link"]}>Link1</a></div></td></tr><tr><td><div data-filterable="{row["Keywords"].replace(", ", " ")}"></div></td><td colspan="4" ><div data-filterable="{row["Keywords"].replace(", ", " ")}">{row["Title english (machine translated)"]}</div></td></tr>\n'
+            html_string += f'<div data-filterable="{row["Keywords"].replace(", ", " ")}"><table><tr><td>{row["Date"]}</td><td>{row["Title"]}</td><td>{row["Institution"]}</td><td>{row["Document Type"]}</td><td><a href={row["Link"]}>Link 1</a></td></tr><tr><td></td><td colspan="4" >{row["Title english (machine translated)"]}</td></tr></table></div>\n'
 
-    html_string +="</table>"
     return html_string
 
 
