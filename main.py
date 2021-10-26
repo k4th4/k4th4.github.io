@@ -94,18 +94,18 @@ def generate_html(df):
     html_string += '\n</div><div class="filterInputs"> <label><input type="radio" name="document_type" value="" checked><i></i>All document types</label>\n'
     for document_type in document_types:
         html_string += f'<label><input type="radio" name="document_type" value={document_type.strip()}><i></i>{document_type.strip()}</label>\n'
-    html_string += '</div>\n'
+    html_string += '</div><table>\n'
 
     for index, row in df.iterrows():
         if 'http' in row["Archive Link"]:
 
             html_string += f'< div data - filterable = "{row["Keywords"].replace(", ", " ")}" >< tr > < td > {row["Date"]} < / td > < td > C {row["Title"]} < / td > < td > {row["Institution"]} < / td > < td > {row["Document Type"]} < / td > < td > {row["Link"]}, {row["Archive Link"]} < / td > < / tr > < tr > < td > < / td > < td colspan = "4" > {row["Title english (machine translated)"]} < / td >< / tr >< / div > '
 
-            else:
+        else:
             html_string += f'< div data - filterable = "{row["Keywords"].replace(", ", " ")}" >< tr > < td > {row["Date"]} < / td > < td > C {row["Title"]} < / td > < td > {row["Institution"]} < / td > < td > {row["Document Type"]} < / td > < td > {row["Link"]} < / td > < / tr > < tr > < td > < / td > < td colspan = "4" > {row["Title english (machine translated)"]} < / td >< / tr >< / div > '
 
-
-            return html_string
+        html_string +="</table>"
+        return html_string
 
 
 
