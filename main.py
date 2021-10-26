@@ -59,6 +59,7 @@ def create_csv_df():
         link = 'http://adamni.com' + article.get('href')
         list_of_df.append(pd.read_csv(link))
     df = pd.concat(list_of_df)
+    df = df.sort_values(by=['Date'], ascending=False)
     return df
 
 
@@ -97,9 +98,11 @@ def generate_html(df):
 
     for index, row in df.iterrows():
         if 'http' in row["Archive Link"]:
-            html_string += f'<table data-filterable="{row["Keywords"].replace(", ", " ")}"><tr><td>{row["Date"]}</td><td>{row["Title"]}</td><td>{row["Institution"]}</td><td>{row["Document Type"]}</td><td><a href={row["Link"]}>Link 1</a>, <a href={row["Archive Link"]}>Link 2</a></td></tr><tr><td></td><td colspan="4" >{row["Title english (machine translated)"]}</td></tr></table>\n'
+            html_string += f'<div data-filterable="{row["Keywords"].replace(", ", " ")}">{row["Date"]}, {row["Title"]}, {row["Institution"]}, {row["Document Type"]}, <a href={row["Link"]}>Link 1</a>, <a href={row["Archive Link"]}>Link 2</div>\n' \
+                           f'<div data-filterable="{row["Keywords"].replace(", ", " ")}">{row["Title english (machine translated)"]}</div>\n'
         else:
-            html_string += f'<table data-filterable="{row["Keywords"].replace(", ", " ")}"><tr><td>{row["Date"]}</td><td>{row["Title"]}</td><td>{row["Institution"]}</td><td>{row["Document Type"]}</td><td><a href={row["Link"]}>Link 1</a></td></tr><tr><td></td><td colspan="4" >{row["Title english (machine translated)"]}</td></tr></table>\n'
+            html_string += f'<div data-filterable="{row["Keywords"].replace(", ", " ")}">{row["Date"]}, {row["Title"]}, {row["Institution"]}, {row["Document Type"]}, <a href={row["Link"]}>Link 1</a></div>\n ' \
+                           f'<div data-filterable="{row["Keywords"].replace(", ", " ")}">{row["Title english (machine translated)"]}</div>\n'
 
     return html_string
 
