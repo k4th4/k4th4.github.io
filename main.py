@@ -94,15 +94,15 @@ def generate_html(df):
     html_string += '\n</div><div class="filterInputs"> <label><input type="radio" name="document_type" value="" checked><i></i>All document types</label>\n'
     for document_type in document_types:
         html_string += f'<label><input type="radio" name="document_type" value={document_type.strip()}><i></i>{document_type.strip()}</label>\n'
-    html_string += '</div>\n'
+    html_string += '</div><br>\n'
 
     for index, row in df.iterrows():
         if 'http' in row["Archive Link"]:
-            html_string += f'<div data-filterable="{row["Keywords"].replace(", ", " ")}">{row["Date"]}, {row["Title"]}, {row["Institution"]}, {row["Document Type"]}, <a href={row["Link"]}>Link 1</a>, <a href={row["Archive Link"]}>Link 2</div>\n' \
-                           f'<div data-filterable="{row["Keywords"].replace(", ", " ")}">{row["Title english (machine translated)"]}</div>\n'
+            html_string += f'<div data-filterable="{row["Keywords"].replace(", ", " ")}">{row["Date"]}, {row["Title"]}, {row["Institution"]}, {row["Document Type"]}, <a href={row["Link"]}>Link 1</a>, <a href={row["Archive Link"]}>Link 2</a></div>\n' \
+                           f'<div data-filterable="{row["Keywords"].replace(", ", " ")}">{row["Title english (machine translated)"]}</div><br>\n'
         else:
             html_string += f'<div data-filterable="{row["Keywords"].replace(", ", " ")}">{row["Date"]}, {row["Title"]}, {row["Institution"]}, {row["Document Type"]}, <a href={row["Link"]}>Link 1</a></div>\n ' \
-                           f'<div data-filterable="{row["Keywords"].replace(", ", " ")}">{row["Title english (machine translated)"]}</div>\n'
+                           f'<div data-filterable="{row["Keywords"].replace(", ", " ")}">{row["Title english (machine translated)"]}</div><br>\n'
 
     return html_string
 
