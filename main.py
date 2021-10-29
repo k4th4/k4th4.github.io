@@ -98,11 +98,9 @@ def generate_html(df):
 
     for index, row in df.iterrows():
         if type(row["Archive Link"]) == str and 'http' in row["Archive Link"]:
-            html_string += f'<div data-filterable="{row["Keywords"].replace(",", " ")}">{row["Date"]},&nbsp;{row["Title"]},&nbsp;{row["Institution"]},&nbsp; {row["Document Type"]},&nbsp;<a href={row["Link"]}>Link 1</a>,&nbsp;<a href={row["Archive Link"]}>Link 2</a></div>\n' \
-                           f'<div data-filterable="{row["Keywords"].replace(",", " ")}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{row["Title english (machine translated)"]}<p>&nbsp;</p></div>\n'
+            html_string += f'<div data-filterable="{row["Keywords"].replace(",", " ")}">{row["Date"]}&nbsp;|&nbsp;{row["Title"]}&nbsp;|&nbsp;{row["Institution"]}&nbsp;|&nbsp;{row["Document Type"]}&nbsp;|&nbsp;<a href={row["Link"]}>Link 1</a>&nbsp;|&nbsp;<a href={row["Archive Link"]}>Link 2</a>&nbsp;|&nbsp;{row["Title english (machine translated)"]}</div>\n'
         else:
-            html_string += f'<div data-filterable="{row["Keywords"].replace(",", " ")}">{row["Date"]},&nbsp;{row["Title"]},&nbsp;{row["Institution"]},&nbsp;{row["Document Type"]},&nbsp;<a href={row["Link"]}>Link 1</a></div>\n ' \
-                           f'<div data-filterable="{row["Keywords"].replace(",", " ")}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{row["Title english (machine translated)"]}<p>&nbsp;</p></div>\n'
+            html_string += f'<div data-filterable="{row["Keywords"].replace(",", " ")}">{row["Date"]}&nbsp;|&nbsp;{row["Title"]}&nbsp;|&nbsp;{row["Institution"]}&nbsp;|&nbsp;{row["Document Type"]}&nbsp;|&nbsp;<a href={row["Link"]}>Link 1</a>&nbsp;|&nbsp;{row["Title english (machine translated)"]}</div>\n ' \
 
     return html_string
 
