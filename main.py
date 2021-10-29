@@ -77,8 +77,8 @@ def generate_html(df):
             not_years.append(k)
     print('keywords:'+ str(not_years))
 
-    institutions = ['Politburo','OrganizationDepartment']
-    document_types = ['GroupStudySessions', 'Documents' ]
+    institutions = ['Politburo','OrganizationDepartment', 'XiJinping']
+    document_types = ['GroupStudySessions', 'Documents','Speeches' ]
 
     if len(not_years) != len(institutions+document_types):
         print('please check keywords!')
@@ -97,12 +97,12 @@ def generate_html(df):
     html_string += '</div><br>\n'
 
     for index, row in df.iterrows():
-        if 'http' in row["Archive Link"]:
+        if type(row["Archive Link"]) == str and 'http' in row["Archive Link"]:
             html_string += f'<div data-filterable="{row["Keywords"].replace(",", " ")}">{row["Date"]},&nbsp;{row["Title"]},&nbsp;{row["Institution"]},&nbsp; {row["Document Type"]},&nbsp;<a href={row["Link"]}>Link 1</a>,&nbsp;<a href={row["Archive Link"]}>Link 2</a></div>\n' \
-                           f'<div data-filterable="{row["Keywords"].replace(",", " ")}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{row["Title english (machine translated)"]}<br></div>\n'
+                           f'<div data-filterable="{row["Keywords"].replace(",", " ")}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{row["Title english (machine translated)"]}<p>&nbsp;</p></div>\n'
         else:
             html_string += f'<div data-filterable="{row["Keywords"].replace(",", " ")}">{row["Date"]},&nbsp;{row["Title"]},&nbsp;{row["Institution"]},&nbsp;{row["Document Type"]},&nbsp;<a href={row["Link"]}>Link 1</a></div>\n ' \
-                           f'<div data-filterable="{row["Keywords"].replace(",", " ")}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{row["Title english (machine translated)"]}<br></div>\n'
+                           f'<div data-filterable="{row["Keywords"].replace(",", " ")}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{row["Title english (machine translated)"]}<p>&nbsp;</p></div>\n'
 
     return html_string
 
